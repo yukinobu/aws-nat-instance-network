@@ -564,6 +564,22 @@ Resources:
           DefaultResult: ABANDON
 
 Outputs:
-  Ipv6CidrBlock:
-    Description: IPv6 CIDR block
+  VPC:
+    Description: VPC ID.
+    Value: !Ref VPC
+
+  PrivateSubnet:
+    Description: Subnet ID for private network.
+    Value: !Ref PrivateSubnetA
+
+  PrivateSubnetAvailabilityZone:
+    Description: Availability zone for private network.
+    Value: !GetAtt PrivateSubnetA.AvailabilityZone
+
+  PrivateSubnetCidrBlock:
+    Description: IPv4 CIDR block for private network.
+    Value: 10.0.128.0/20
+
+  PrivateSubnetIpv6CidrBlock:
+    Description: IPv6 CIDR block for private network.
     Value: !Select [1, !Cidr [!Select [0, !GetAtt VPC.Ipv6CidrBlocks], 2, 57]]
