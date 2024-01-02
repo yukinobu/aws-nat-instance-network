@@ -5,7 +5,7 @@ Parameters:
   EC2NATInstanceInstanceType:
     Description: EC2 instance type for the NAT instance (should be Graviton).
     Type: String
-    Default: t4g.small
+    Default: t4g.nano
   EC2NATInstanceKeyName:
     Description: SSH key pair name for the NAT instance.
     Type: String
@@ -542,9 +542,6 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AutoScalingGroupName: !Sub "${AWS::StackName}-ASG"
-      LaunchTemplate:
-        LaunchTemplateId: !Ref EC2NATInstanceLaunchTemplate
-        Version: !GetAtt EC2NATInstanceLaunchTemplate.LatestVersionNumber
       MinSize: 1
       MaxSize: 1
       DesiredCapacity: 1
@@ -557,6 +554,18 @@ Resources:
         - Fn::Select:
             - 0
             - Fn::GetAZs: !Ref "AWS::Region"
+      CapacityRebalance: false
+      MixedInstancesPolicy:
+        LaunchTemplate:
+          LaunchTemplateSpecification:
+            LaunchTemplateId: !Ref EC2NATInstanceLaunchTemplate
+            Version: !GetAtt EC2NATInstanceLaunchTemplate.LatestVersionNumber
+          Overrides:
+            - InstanceType: !Ref EC2NATInstanceInstanceType
+        InstancesDistribution:
+          OnDemandBaseCapacity: 0
+          OnDemandPercentageAboveBaseCapacity: 0
+          SpotAllocationStrategy: "price-capacity-optimized"
       LifecycleHookSpecificationList:
         - LifecycleHookName: nat-launch
           LifecycleTransition: autoscaling:EC2_INSTANCE_LAUNCHING

@@ -6,8 +6,7 @@ An AWS CloudFormation template of NAT instance and private network, low-cost alt
 
 ### Cost efficiency
 
-* Graviton (arm64) architecture.
-* Instance type `t4g.small` is on a free trial until the end of 2023.
+* Minimum EC2 running costs with `t4g.nano` spot instances
 * Minimum EBS footprint (1GB).
 
 ### Performance/Reliability
@@ -47,7 +46,7 @@ Now you can place your instances to a private subnet named `YOUR_STACK_NAME-Priv
 
 ## Operational charge example
 
-* EC2 `t4g.nano` spot instance: 1.3 ~ 1.6 USD/month, but you may have [free trial for `t4g.small` until Dec 31st 2023](https://repost.aws/articles/ARdZ3_Qv8TQdyWhmy4npRMRQ/announcing-amazon-ec2-t4g-free-trial-extension).
+* EC2 `t4g.nano` spot instance: 1.3 ~ 1.6 USD/month.
 * EBS: 0.096 USD/month.
 * Ingress traffic: free.
 * Egress traffic: depends your traffic, but you may have [100 GB/month free tier](https://aws.amazon.com/blogs/aws/aws-free-tier-data-transfer-expansion-100-gb-from-regions-and-1-tb-from-amazon-cloudfront-per-month/).
@@ -58,7 +57,7 @@ Note: prices are based on ap-northeast-1 region, as of Sep 2023.
 
 * `EC2NATInstanceInstanceType`
   * EC2 instance type of the NAT instance.
-  * The default `t4g.small` is on a [free trial until Dec 31st 2023](https://repost.aws/articles/ARdZ3_Qv8TQdyWhmy4npRMRQ/announcing-amazon-ec2-t4g-free-trial-extension).
+  * The default `t4g.nano` is the minimum EC2 running cost.
 * `EC2NATInstanceKeyName`
   * If you want to ssh login to the NAT instance, specify the key pair name.
   * No need to specify if you do not manage NAT instances.
@@ -93,4 +92,3 @@ This template works in AWS regions below:
 ## Similar projects
 
 * [int128/terraform-aws-nat-instance: Terraform module to provision a NAT Instance using an Auto Scaling Group and Spot Instance from $1/month](https://github.com/int128/terraform-aws-nat-instance)
-

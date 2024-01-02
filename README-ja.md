@@ -6,8 +6,7 @@ NATインスタンスとプライベートネットワークのAWS CloudFormatio
 
 ### コスト効率
 
-* Graviton（arm64）アーキテクチャ
-* インスタンスタイプ `t4g.small` は2023年末まで無料トライアル中です。
+* `t4g.nano` スポットインスタンスによる最小のEC2稼働コスト
 * 最小のEBSサイズ（1GB）
 
 ### パフォーマンス/信頼性
@@ -47,7 +46,7 @@ aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "fi
 
 ## 運用費用の例
 
-* EC2 `t4g.nano` スポットインスタンス: 1.3〜1.6 USD/月、ただし2023年12月31日まで [`t4g.small` の無料トライアル中](https://repost.aws/articles/ARdZ3_Qv8TQdyWhmy4npRMRQ/announcing-amazon-ec2-t4g-free-trial-extension)。
+* EC2 `t4g.nano` スポットインスタンス: 1.3〜1.6 USD/月
 * EBS: 0.096 USD/月
 * 受信トラフィック: 無料
 * 送信トラフィック: トラフィック量に依存、[月間100GBの無料利用枠あり](https://aws.amazon.com/blogs/aws/aws-free-tier-data-transfer-expansion-100-gb-from-regions-and-1-tb-from-amazon-cloudfront-per-month/)
@@ -58,7 +57,7 @@ aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "fi
 
 * `EC2NATInstanceInstanceType`
   * NATインスタンスのEC2インスタンスタイプ。
-  * デフォルトの `t4g.small` は2023年12月31日までの[無料トライアル](https://repost.aws/articles/ARdZ3_Qv8TQdyWhmy4npRMRQ/announcing-amazon-ec2-t4g-free-trial-extension)。
+  * デフォルトの `t4g.nano` は最小のEC2稼働コスト。
 * `EC2NATInstanceKeyName`
   * NATインスタンスへのSSHログインを行いたい場合、キーペア名を指定。
   * NATインスタンスを管理しない場合は指定不要。
