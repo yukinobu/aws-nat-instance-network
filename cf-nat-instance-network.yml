@@ -22,73 +22,73 @@ Conditions:
 Mappings:
   RegionToAlpineLinuxAMI:
     ap-northeast-1:
-      ID: ami-0151479164ce47f56
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:11.000Z"
+      ID: ami-06beeaf0b1f72f642
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:51.000Z"
     ap-northeast-2:
-      ID: ami-07e95f393fc010900
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:02.000Z"
+      ID: ami-00525ceb67f3e5729
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:43.000Z"
     ap-northeast-3:
-      ID: ami-0dcdf17999a2b55f6
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:57.000Z"
+      ID: ami-0c76426bf26859b5f
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:39.000Z"
     ap-south-1:
-      ID: ami-0c599972e1266db11
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:28:52.000Z"
+      ID: ami-0eb947343b39329a4
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:15:44.000Z"
     ap-southeast-1:
-      ID: ami-0acf0ea9f2fad95d2
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:22.000Z"
+      ID: ami-0150b2079ddabd799
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:17:02.000Z"
     ap-southeast-2:
-      ID: ami-081b6390fc399f3e8
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:26.000Z"
+      ID: ami-005d44eadaf47a1bd
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:17:05.000Z"
     ca-central-1:
-      ID: ami-0c1dd45b48a0cf6a4
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:18.000Z"
+      ID: ami-070d8779488904002
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:05.000Z"
     eu-central-1:
-      ID: ami-0fb33f81207e6557f
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:21.000Z"
+      ID: ami-0504f5408121ad37e
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:09.000Z"
     eu-north-1:
-      ID: ami-0121455c32a479927
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:40.000Z"
+      ID: ami-00f327890bc49f8eb
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:26.000Z"
     eu-west-1:
-      ID: ami-0ee39bb40d35a2a34
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:51.000Z"
+      ID: ami-0737f550c9645db2c
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:36.000Z"
     eu-west-2:
-      ID: ami-094cb611e42043aca
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:48.000Z"
+      ID: ami-018ea09de999f4122
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:32.000Z"
     eu-west-3:
-      ID: ami-0aac65bc725e30689
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:44.000Z"
+      ID: ami-0ce8010080f8cd39d
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:29.000Z"
     sa-east-1:
-      ID: ami-068d2d4c809ddc5ce
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:14.000Z"
+      ID: ami-09c52c1557ddf28d5
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:54.000Z"
     us-east-1:
-      ID: ami-0e11b0527e5c1e577
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:38.000Z"
+      ID: ami-095052c3559ac1b7f
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:17:16.000Z"
     us-east-2:
-      ID: ami-0953fa42508e71f6b
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:30:41.000Z"
+      ID: ami-08b00651736aeb6ad
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:17:18.000Z"
     us-west-1:
-      ID: ami-08300a50970b87e7a
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:29:30.000Z"
+      ID: ami-072547375369b14f6
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-11T15:16:15.000Z"
     us-west-2:
-      ID: ami-0ecc337bee6e30d6a
-      Name: "alpine-3.18.3-aarch64-uefi-cloudinit-r0"
-      Date: "2023-08-07T18:03:13.000Z"
+      ID: ami-033babd43ba63fee7
+      Name: "alpine-3.19.0-aarch64-uefi-cloudinit-r0"
+      Date: "2023-12-07T17:52:49.000Z"
 
 Resources:
   VPC:
