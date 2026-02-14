@@ -40,6 +40,16 @@ AWSリージョンがサポートされているリージョンにあること�
 aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "file://$(realpath cf-nat-instance-network.yml)" --capabilities CAPABILITY_IAM
 ```
 
+AMIを明示指定したい場合は `EC2NATInstanceAMI` を渡してください。
+
+```bash
+aws cloudformation create-stack \
+  --stack-name YOUR_STACK_NAME \
+  --template-body "file://$(realpath cf-nat-instance-network.yml)" \
+  --capabilities CAPABILITY_IAM \
+  --parameters ParameterKey=EC2NATInstanceAMI,ParameterValue=ami-xxxxxxxxxxxxxxxxx
+```
+
 ### 次のステップ
 
 `YOUR_STACK_NAME-PrivateSubnetA` という名前のプライベートサブネットがありますので、そこに必要なインスタンスを配置してください。
@@ -64,12 +74,17 @@ aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "fi
 * `EC2NATInstanceAdminNetwork`
   * NATインスタンスへのSSHログインを行いたい場合、ログイン元を `203.0.113.114/32` のような形式で指定。
   * NATインスタンスを管理しない場合は指定不要。
+* `EC2NATInstanceAMI`
+  * NATインスタンスに使用するAMI ID。
+  * 形式: `ami-xxxxxxxx` 〜 `ami-xxxxxxxxxxxxxxxxx`（16進数）。
+  * 空文字のままにすると、テンプレート内のリージョン別デフォルトAMIマッピングを使用。
+  * テンプレート更新と独立してAMIを更新したい場合に指定。
 
 注：NATインスタンスが置き換えられるとSSHホストキーが変更されます。そのため、SSHコマンドは「WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!」と表示する場合があります。
 
 ## Supported regions
 
-このテンプレートは以下のAWSリージョンで動作します：
+デフォルト（テンプレート内AMIマッピング使用時）は、以下のAWSリージョンで動作します：
 
 * ap-northeast-1
 * ap-northeast-2
@@ -88,6 +103,15 @@ aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "fi
 * us-east-2
 * us-west-1
 * us-west-2
+
+`EC2NATInstanceAMI` を指定する場合は、指定したAMIが存在するリージョンであれば利用できます。
+
+## 共同作業の進め方（おすすめ）
+
+1. まずはデフォルトAMIマッピングのまま、非本番スタックでネットワーク動作を確認します。
+2. リージョンごとの利用AMIを決め、`EC2NATInstanceAMI` 指定で提案ブランチに反映します。
+3. マージ前に、インスタンス置き換え時の経路切替・EIP再関連付けの挙動を検証します。
+4. コストと運用性の期待値を満たすことを確認してから本番反映します。
 
 ## 類似プロジェクト
 

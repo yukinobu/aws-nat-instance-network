@@ -40,6 +40,16 @@ Make sure your AWS Region is in a supported region.
 aws cloudformation create-stack --stack-name YOUR_STACK_NAME --template-body "file://$(realpath cf-nat-instance-network.yml)" --capabilities CAPABILITY_IAM
 ```
 
+If you want to pin an AMI explicitly, pass `EC2NATInstanceAMI`:
+
+```bash
+aws cloudformation create-stack \
+  --stack-name YOUR_STACK_NAME \
+  --template-body "file://$(realpath cf-nat-instance-network.yml)" \
+  --capabilities CAPABILITY_IAM \
+  --parameters ParameterKey=EC2NATInstanceAMI,ParameterValue=ami-xxxxxxxxxxxxxxxxx
+```
+
 ### Nest step
 
 Now you can place your instances to a private subnet named `YOUR_STACK_NAME-PrivateSubnetA`.
@@ -64,12 +74,17 @@ Note: prices are based on ap-northeast-1 region, as of Sep 2023.
 * `EC2NATInstanceAdminNetwork`
   * If you want to ssh login to the NAT instance, specify the login source in a format like `203.0.113.114/32`.
   * No need to specify if you do not manage NAT instances.
+* `EC2NATInstanceAMI`
+  * AMI ID for the NAT instance.
+  * Format: `ami-xxxxxxxx` to `ami-xxxxxxxxxxxxxxxxx` (hex characters).
+  * Leave it empty to use the built-in regional default AMI mapping.
+  * Set this if you want to update AMI independently from template updates.
 
 Note that the ssh host key changes when the NAT instance is replaced. Therefore, the ssh command may say "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!". In this case you need to edit your `known_hosts`.
 
 ## Supported regions
 
-This template works in AWS regions below:
+By default, this template works in AWS regions below (built-in AMI mapping):
 
 * ap-northeast-1
 * ap-northeast-2
@@ -88,6 +103,15 @@ This template works in AWS regions below:
 * us-east-2
 * us-west-1
 * us-west-2
+
+If you set `EC2NATInstanceAMI`, you can deploy it to any region where the specified AMI exists.
+
+## Suggested collaboration workflow
+
+1. Start with default AMI mapping and validate the network behavior in a non-production stack.
+2. Find a target Alpine AMI per region and deploy with `EC2NATInstanceAMI` in a proposal branch.
+3. Verify replacement behavior (ASG relaunch, route switch, and EIP attach) before merge.
+4. Merge the template update only after validating cost and operability expectations.
 
 ## Similar projects
 

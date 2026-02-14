@@ -14,10 +14,17 @@ Parameters:
     Description: Network range for administration like "203.0.113.114/32".
     Type: String
     Default: ""
+  EC2NATInstanceAMI:
+    Description: AMI ID for the NAT instance (e.g. ami-0123456789abcdef0). Leave empty to use the built-in regional default.
+    Type: String
+    Default: ""
+    AllowedPattern: "^$|^ami-[0-9a-f]{8,17}$"
+    ConstraintDescription: Must be empty or a valid AMI ID like ami-0123456789abcdef0.
 
 Conditions:
   IsKeyNameProvided: !Not [!Equals ["", !Ref EC2NATInstanceKeyName]]
   IsAdminNetworkProvided: !Not [!Equals ["", !Ref EC2NATInstanceAdminNetwork]]
+  IsAmiProvided: !Not [!Equals ["", !Ref EC2NATInstanceAMI]]
 
 Mappings:
   RegionToAlpineLinuxAMI:
@@ -314,10 +321,14 @@ Resources:
     Properties:
       LaunchTemplateName: !Sub "${AWS::StackName}-EC2NATInstanceLaunchTemplate"
       LaunchTemplateData:
-        ImageId: !FindInMap
-          - RegionToAlpineLinuxAMI
-          - !Ref AWS::Region
-          - ID
+        ImageId:
+          Fn::If:
+            - IsAmiProvided
+            - !Ref EC2NATInstanceAMI
+            - !FindInMap
+              - RegionToAlpineLinuxAMI
+              - !Ref AWS::Region
+              - ID
         InstanceType: !Ref EC2NATInstanceInstanceType
         CreditSpecification:
           CpuCredits: standard
